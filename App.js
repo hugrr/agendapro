@@ -16,7 +16,6 @@ import {
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [selected, setSelected] = useState(true);
   const [dataFilter, setDatafiler] = useState(events);
   const [text, setText] = useState('');
 
@@ -91,7 +90,6 @@ const App: () => Node = () => {
   };
 
   const filter = election => {
-    setSelected(false);
     console.log(election, 'election');
     const dataFilter = events.filter(item => item.state === election);
     setDatafiler(dataFilter);
@@ -106,7 +104,6 @@ const App: () => Node = () => {
         return item;
     });
     setDatafiler(dataFilterName);
-    setSelected(false);
     console.log(dataFilterName, dataFilter, text, 'aca datafilter');
   };
   useEffect(() => {
