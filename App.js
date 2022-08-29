@@ -118,23 +118,26 @@ const App: () => Node = () => {
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView>
           <View style={[styles.row]}>
-            {dataFilter.map(item => (
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => filter(item.state)}>
-                <Text style={styles.colorText}>
-                  {moment(item.start).format('DD-MM-YY')}
-                </Text>
-                <Text style={styles.colorText}>
-                  {moment(item.end).format('DD-MM-YY')}
-                </Text>
-                <Text style={styles.colorText}>{item.service}</Text>
-                <Text style={{color: setColor(item.state)}}>{item.state}</Text>
-                <Text style={[styles.colorText, styles.styleName]}>
-                  {item.client}
-                </Text>
-              </TouchableOpacity>
-            ))}
+            {dataFilter &&
+              dataFilter.map(item => (
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => filter(item.state)}>
+                  <Text style={styles.colorText}>
+                    {moment(item.start).format('DD-MM-YY')}
+                  </Text>
+                  <Text style={styles.colorText}>
+                    {moment(item.end).format('DD-MM-YY')}
+                  </Text>
+                  <Text style={styles.colorText}>{item.service}</Text>
+                  <Text style={{color: setColor(item.state)}}>
+                    {item.state}
+                  </Text>
+                  <Text style={[styles.colorText, styles.styleName]}>
+                    {item.client}
+                  </Text>
+                </TouchableOpacity>
+              ))}
           </View>
         </ScrollView>
         <Button onPress={clean} title="Clean" color="#841584" />
