@@ -80,13 +80,13 @@ const App: () => Node = () => {
   ];
   const setColor = state => {
     if (state === 'booked') {
-      return 'green';
-    }
-    if (state === 'canceled') {
       return 'orange';
     }
-    if (state === 'confirmed') {
+    if (state === 'canceled') {
       return 'red';
+    }
+    if (state === 'confirmed') {
+      return 'green';
     }
   };
 
