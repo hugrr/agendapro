@@ -124,10 +124,10 @@ const App: () => Node = () => {
                   style={styles.button}
                   onPress={() => filter(item.state)}>
                   <Text style={styles.colorText}>
-                    {moment(item.start).format('DD-MM-YY')}
+                    {moment(item.start).format('DD-MM-YY / hh:mm')}
                   </Text>
                   <Text style={styles.colorText}>
-                    {moment(item.end).format('DD-MM-YY')}
+                    {moment(item.end).format('DD-MM-YY / hh:mm')}
                   </Text>
                   <Text style={styles.colorText}>{item.service}</Text>
                   <Text style={{color: setColor(item.state)}}>
