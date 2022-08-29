@@ -17,7 +17,7 @@ import {
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [selected, setSelected] = useState(true);
-  const [dataFilter, setDatafiler] = useState([]);
+  const [dataFilter, setDatafiler] = useState(events);
   const [text, setText] = useState('');
 
   const events = [
@@ -98,7 +98,7 @@ const App: () => Node = () => {
   };
 
   const clean = () => {
-    setSelected(true);
+    setDatafiler(events);
   };
   const filterName = text => {
     const dataFilterName = events.filter(item => {
@@ -118,45 +118,23 @@ const App: () => Node = () => {
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <ScrollView>
           <View style={[styles.row]}>
-            {selected
-              ? events.map(item => (
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => filter(item.state)}>
-                    <Text style={styles.colorText}>
-                      {moment(item.start).format('DD-MM-YY')}
-                    </Text>
-                    <Text style={styles.colorText}>
-                      {moment(item.end).format('DD-MM-YY')}
-                    </Text>
-                    <Text style={styles.colorText}>{item.service}</Text>
-                    <Text style={{color: setColor(item.state)}}>
-                      {item.state}
-                    </Text>
-                    <Text style={[styles.colorText, styles.styleName]}>
-                      {item.client}
-                    </Text>
-                  </TouchableOpacity>
-                ))
-              : dataFilter.map(item => (
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => filter(item.state)}>
-                    <Text style={styles.colorText}>
-                      {moment(item.start).format('DD-MM-YY')}
-                    </Text>
-                    <Text style={styles.colorText}>
-                      {moment(item.end).format('DD-MM-YY')}
-                    </Text>
-                    <Text style={styles.colorText}>{item.service}</Text>
-                    <Text style={{color: setColor(item.state)}}>
-                      {item.state}
-                    </Text>
-                    <Text style={[styles.colorText, styles.styleName]}>
-                      {item.client}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+            {dataFilter.map(item => (
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => filter(item.state)}>
+                <Text style={styles.colorText}>
+                  {moment(item.start).format('DD-MM-YY')}
+                </Text>
+                <Text style={styles.colorText}>
+                  {moment(item.end).format('DD-MM-YY')}
+                </Text>
+                <Text style={styles.colorText}>{item.service}</Text>
+                <Text style={{color: setColor(item.state)}}>{item.state}</Text>
+                <Text style={[styles.colorText, styles.styleName]}>
+                  {item.client}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </ScrollView>
         <Button onPress={clean} title="Clean" color="#841584" />
